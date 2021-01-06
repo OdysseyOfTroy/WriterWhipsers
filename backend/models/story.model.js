@@ -12,5 +12,5 @@ var storySchema = new Schema({
 });
 
 //module.export allows file reading when called
-const Story = mongoose.model("Story", userSchema);
+const Story = mongoose.model("Story", storySchema);
 module.exports = Story;
