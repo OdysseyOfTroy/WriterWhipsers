@@ -2,10 +2,10 @@ var mongoose = require("mongoose");
 Schema = mongoose.Schema;
 
 var storySchema = new Schema({
-    Title: {type : String, required: true, trim : true},
-    Author_Username: {type : String, required: true, index: { unique: true}, trim : true},
-    Genre: {type : String, required: true},
-    Idea: {type : String, required: true},
+    title: {type : String, required: true, trim : true},
+    author_Username: {type : String, required: true, trim : true},
+    genre: {type : String, required: true},
+    idea: {type : String, required: true},
     likes: {type : Number},
 }, {
     timestamps: true,

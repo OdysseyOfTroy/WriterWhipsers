@@ -33,4 +33,20 @@ router.route("/:id").delete((req, res) => {
         .catch(err => res.status(400).json("Error: " + err));
 });
 
+router.route("/update/:id").post((req, res) => {
+    Story.findById(req.params.id)
+        .then(story => {
+            story.title = req.body.title;
+            story.author_Username = req.body.author_Username;
+            story.genre = req.body.genre;
+            story.idea = req.body.idea;
+            story.likes = Number(req.body.likes);
+
+            story.save()
+                .then(() => res.json("story updated!"))
+                .catch(err => res.status(400).json("Error: " + err));
+        })
+        .catch(err => res.status(400).json("Error: " + err));
+});
+
 module.exports = router;
