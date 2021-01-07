@@ -1,12 +1,15 @@
 const router = require("express").Router();
 let Story = require("../models/story.model");
 
+
+//get all stories
 router.route("/").get((req, res) => {
     Story.find()
         .then(stories => res.json(stories))
         .catch(err => res.status(400).json("Error: " + err));
 });
 
+//add story
 router.route("/add").post((req, res) => {
     const title = req.body.title;
     const author_Username = req.body.author_Username;
@@ -21,18 +24,21 @@ router.route("/add").post((req, res) => {
         .catch(err => res.status(400).json("Error: " + err));
 });
 
+//get story by id
 router.route("/:id").get((req, res) => {
     Story.findById(req.params.id)
         .then(story => res.json(story))
         .catch(err => res.status(400).json("Error: " + err));
 });
 
+//delete story by id
 router.route("/:id").delete((req, res) => {
     Story.findByIdAndDelete(req.params.id)
         .then(story => res.json("story deleted"))
         .catch(err => res.status(400).json("Error: " + err));
 });
 
+//update story
 router.route("/update/:id").post((req, res) => {
     Story.findById(req.params.id)
         .then(story => {
