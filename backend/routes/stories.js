@@ -5,9 +5,16 @@ let Story = require("../models/story.model");
 //get all stories
 router.route("/").get((req, res) => {
     Story.find()
-        .then(stories => res.json(stories))
+        .then(story => res.json(story))
         .catch(err => res.status(400).json("Error: " + err));
 });
+
+//get stories by Genre
+router.route("/:genre").get((req, res) => {
+    Story.find({genre: req.params.genre})
+        .then(story => res.json(story))
+        .catch(err => res.status(400).json("Error: " + err))
+})
 
 //add story
 router.route("/add").post((req, res) => {
