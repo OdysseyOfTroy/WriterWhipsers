@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class CreateUser extends Component {
     //story constructor ////////////////////////////////////////////////////////////////////////////
@@ -49,7 +50,11 @@ export default class CreateUser extends Component {
             password: this.state.password,
         }
 
-        console.log(user)
+        console.log(user);
+
+        axios.post('http://localhost:9000/users/add', user)
+            .then(res => console.log(res.data));
+
 
         window.location = '/';
     }
@@ -85,7 +90,7 @@ export default class CreateUser extends Component {
                     </div>
 
                     <div className="form-group">
-                        <input type="submit" value="Create User" className="btn btn-primary" />
+                        <input type="submit" value="Create" className="btn btn-primary" />
                     </div>
                 </form>
             </div>

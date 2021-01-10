@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class CreateStory extends Component {
     //story constructor ////////////////////////////////////////////////////////////////////////////
@@ -59,7 +60,11 @@ export default class CreateStory extends Component {
             likes: this.state.likes,
         }
 
-        console.log(story)
+        console.log(story);
+
+        axios.post('http://localhost:9000/stories/add', story)
+            .then(res => console.log(res.data));
+
 
         window.location = '/';
     }
