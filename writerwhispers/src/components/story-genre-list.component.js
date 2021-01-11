@@ -10,6 +10,9 @@ const Stories = props => (
         <td>{props.story.genre}</td>
         <td>{props.story.idea}</td>
         <td>{props.story.likes}</td>
+        <td>
+            <Link to={"/story-Ideas/View/"+props.story._id}>View</Link>
+        </td>
     </tr>
 )
 export default class StoryList extends Component {
@@ -34,6 +37,7 @@ export default class StoryList extends Component {
             return <Stories story={currentstory} key={currentstory._id}/>; 
         })
     }
+    
     render() {
         return (
             <div>

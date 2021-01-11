@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import { Link } from 'react-router-dom';
 
 const Stories = props => (
     <tr>
@@ -11,10 +10,11 @@ const Stories = props => (
         <td>{props.story.idea}</td>
         <td>{props.story.likes}</td>
         <td>
-            <Link to={"/story-Ideas/View/"+props.story._id}>View</Link>
+            <Link to={"/comment-View/"+props.story._id}>Comments</Link>
         </td>
     </tr>
 )
+
 export default class StoryList extends Component {
     constructor(props) {
         super(props)
@@ -23,9 +23,10 @@ export default class StoryList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:9000/stories/')
+        axios.get('http://localhost:9000/stories/View/' + this.props.match.params._id)
             .then(Response => {
                 this.setState({ stories: Response.data})
+                console.log(Response.data)
             })
             .catch((error) => {
                 console.log(error);
@@ -37,10 +38,12 @@ export default class StoryList extends Component {
             return <Stories story={currentstory} key={currentstory._id}/>; 
         })
     }
+    
+
     render() {
         return (
             <div>
-                <h3>Story ideas!</h3>
+                <h3 className="text-center">Story idea</h3>
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
