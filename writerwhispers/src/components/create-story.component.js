@@ -24,7 +24,7 @@ export default class CreateStory extends Component {
     //set values of the document //////////////////////////////////////////////////////////////////
     componentDidMount() {
         this.setState({
-            genreList: ["Adventure", "Romance"],
+            genreList: ["Action", "Adventure", "Comedy", "Crime", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Sci-fi"],
             genre: "Adventure"
         })
     }
