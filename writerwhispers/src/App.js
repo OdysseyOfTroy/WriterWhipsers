@@ -7,6 +7,8 @@ import StoryList from "./components/story-list.component";
 import EditStory from "./components/edit-story.component";
 import CreateStory from "./components/create-story.component";
 import CreateUser from "./components/create-user.component";
+import Thumbnails from "./components/Thumbnail.component";
+import StoryGenreList from "./components/story-genre-list.component";
 //import './App.css';
 
 function App() {
@@ -14,10 +16,12 @@ function App() {
     <Router>
       <Navbar />
       <br/>
-      <Route path="/" exact component={StoryList} />
+      <Route path="/" exact component={Thumbnails}/>
+      <Route path="/story-Ideas" exact component={StoryList} />
       <Route path="/edit/:id" component={EditStory} />
       <Route path="/create" component={CreateStory} />
       <Route path="/user" component={CreateUser} />
+      <Route path="/story-Ideas/:genre" component={StoryGenreList}/>
     </Router>
   );
 }
