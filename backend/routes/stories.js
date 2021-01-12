@@ -32,8 +32,8 @@ router.route("/add").post((req, res) => {
 });
 
 //get story by id
-router.route("/:id").get((req, res) => {
-    Story.findById(req.params.id)
+router.route("/View/:id").get((req, res) => {
+    Story.find({_id: req.params.id})
         .then(story => res.json(story))
         .catch(err => res.status(400).json("Error: " + err));
 });

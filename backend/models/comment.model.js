@@ -2,9 +2,9 @@ var mongoose = require("mongoose");
 Schema = mongoose.Schema;
 
 var commentSchema = new Schema({
-    Story_Title: {type : String, required: true, trim : true},
-    Author_Username: {type : String, required: true, index: { unique: true}, trim : true},
-    Comment: {type : String, required: true},
+    story_id: {type : String, required: true, trim : true},
+    author_Username: {type : String, required: true, trim : true},
+    comment: {type : String, required: true},
 }, {
     timestamps: true,
 });

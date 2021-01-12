@@ -1,10 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const WebSocket = require('ws');
 
 require("dotenv").config();
 
 const app = express();
+const wss = new WebSocket.Server({ port:8000 });
 const port = process.env.port || 9000;
 
 app.use(cors());
@@ -26,6 +28,17 @@ const commentsRouter = require("./routes/comments");
 app.use("/users", usersRouter);
 app.use("/stories", storiesRouter);
 app.use("/comments", commentsRouter);
+
+//Websocket =====================================================================================
+wss.on('connection', function connection(ws) {
+    ws.on('message', function incoming(data) {
+        wss.clients.forEach(function each(client) {
+            if (client !== ws && client.readyState === WebSocket.OPEN) {
+                client.send(data);
+            }
+        });
+    });
+});
 
 //startup =======================================================================================
 app.listen(port, () => {
